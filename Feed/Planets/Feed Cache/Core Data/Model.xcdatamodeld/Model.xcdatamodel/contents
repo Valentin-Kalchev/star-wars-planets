@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17709" systemVersion="20C69" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="ManagedCache" representedClassName="ManagedCache" syncable="YES" codeGenerationType="class">
+        <attribute name="url" attributeType="URI"/>
+        <relationship name="page" maxCount="1" deletionRule="Cascade" destinationEntity="ManagedPage" inverseName="cache" inverseEntity="ManagedPage"/>
+    </entity>
+    <entity name="ManagedFeedPlanet" representedClassName="ManagedFeedPlanet" syncable="YES" codeGenerationType="class">
+        <attribute name="climate" optional="YES" attributeType="String"/>
+        <attribute name="created" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="diameter" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="edited" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="films" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData" customClassName="Array&lt;URL&gt;"/>
+        <attribute name="gravity" optional="YES" attributeType="String"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="orbitalPeriod" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="population" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="residents" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData" customClassName="Array&lt;URL&gt;"/>
+        <attribute name="rotationPeriod" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="surfaceWater" optional="YES" attributeType="String"/>
+        <attribute name="terrain" optional="YES" attributeType="String"/>
+        <attribute name="url" attributeType="URI"/>
+        <relationship name="page" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ManagedPage" inverseName="planets" inverseEntity="ManagedPage"/>
+    </entity>
+    <entity name="ManagedPage" representedClassName="ManagedPage" syncable="YES" codeGenerationType="class">
+        <attribute name="next" optional="YES" attributeType="URI"/>
+        <attribute name="previous" optional="YES" attributeType="URI"/>
+        <relationship name="cache" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ManagedCache" inverseName="page" inverseEntity="ManagedCache"/>
+        <relationship name="planets" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="ManagedFeedPlanet" inverseName="page" inverseEntity="ManagedFeedPlanet"/>
+    </entity>
+    <elements>
+        <element name="ManagedCache" positionX="-63" positionY="-18" width="128" height="59"/>
+        <element name="ManagedFeedPlanet" positionX="-54" positionY="-9" width="128" height="254"/>
+        <element name="ManagedPage" positionX="-63" positionY="108" width="128" height="89"/>
+    </elements>
+</model>
